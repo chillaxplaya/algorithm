@@ -1,17 +1,18 @@
-#include "question/5_Longest_Palindromic_Substring.cpp"
+#include "question/10_Regular_Expression_Matching.cpp"
 #include "regex"
 #include "algm/parse.h"
 int main(int argc, char *argv[])
 {
-    string str = "[[\"\\\"bb\\\"\"]]";
+    string str = "[[\"\\\"aa\\\"\",\"\\\"a\\\"\"],[\"\\\"aa\\\"\",\"\\\"a*\\\"\"],[\"\\\"ab\\\"\",\"\\\".*\\\"\"],[\"\\\"aab\\\"\",\"\\\"c*a*b\\\"\"]]";
     vector<vector<string>> arr = parseStringArrArr(str);
     for (int i = 0; i < arr.size(); i++)
     {
       vector<string> args = arr[i];
       Solution *s = new Solution();
       string arg0 = parseString(args[0]);
-      string result=s->longestPalindrome(arg0);
-      string resultabc =serializeString(result);
+      string arg1 = parseString(args[1]);
+      bool result=s->isMatch(arg0,arg1);
+      string resultabc =serializeBool(result);
       cout << "resultabc"+to_string(i)+":" << resultabc <<"resultend"<< endl;
     }
     return 0;

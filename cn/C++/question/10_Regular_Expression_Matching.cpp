@@ -10,6 +10,8 @@ using namespace std;
 // @test("aa","a")=false
 // @test("aa","a*")=true
 // @test("ab",".*")=true
+// @test("aab", "c*a*b")=true
+// @test("mississippi", "mis*is*p*.")=false
 class Solution {
 public:
     bool isMatch(string s, string p) {
@@ -31,10 +33,30 @@ public:
         }
         for(int i = 1; i < m; i++) {
             for(int j = 0;j < n; j++) {
+                if(j == 0){
+                    if(p[i] == '*') {
+                        dp[i][j] = true;
+                    }else if(p[i] == '.') {
+                        dp[i][j] =  true;
+                    }else if(p[i] == s[j]) {
+                        dp[i][j] = true;
+                    }else{
+                        dp[i][j] = false;
+                    }
+                    continue;
+                }
                 if(p[i] == '*') {
-                    dp[i][j] = 
+                    if(dp[i][j-1]) dp[i][j] = true;
+                    else dp[i][j] = dp[i-1][j-1];
+                }else if(p[i] == '.') {
+                    dp[i][j] = dp[i-1][j-1];
+                }else if(p[i] == s[j]) {
+                    dp[i][j] = dp[i-1][j-1];
+                }else{
+                    dp[i][j] = false;
                 }
             }
         }
+        return dp[m-1][n-1];
     }
 };
