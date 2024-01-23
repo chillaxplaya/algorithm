@@ -12,6 +12,8 @@ using namespace std;
 // @test("ab",".*")=true
 // @test("aab", "c*a*b")=true
 // @test("mississippi", "mis*is*p*.")=false
+// @test("mississippi", "mis*is*ip*.")=true
+// @test("aaa", "aaaa")=false
 class Solution {
 public:
     bool isMatch(string s, string p) {
@@ -46,8 +48,8 @@ public:
                     continue;
                 }
                 if(p[i] == '*') {
-                    if(dp[i][j-1]) dp[i][j] = true;
-                    else dp[i][j] = dp[i-1][j-1];
+                    if(dp[i-1][j-1] && (p[i-1] == s[j] || p[i-1] == '.')) dp[i][j] = true;
+                    else dp[i][j] = false;
                 }else if(p[i] == '.') {
                     dp[i][j] = dp[i-1][j-1];
                 }else if(p[i] == s[j]) {

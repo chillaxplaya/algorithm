@@ -3,7 +3,7 @@
 #include "algm/parse.h"
 int main(int argc, char *argv[])
 {
-    string str = "[[\"\\\"aa\\\"\",\"\\\"a\\\"\"],[\"\\\"aa\\\"\",\"\\\"a*\\\"\"],[\"\\\"ab\\\"\",\"\\\".*\\\"\"],[\"\\\"aab\\\"\",\"\\\"c*a*b\\\"\"]]";
+    string str = "[[\"\\\"aa\\\"\",\"\\\"a\\\"\"],[\"\\\"aa\\\"\",\"\\\"a*\\\"\"],[\"\\\"ab\\\"\",\"\\\".*\\\"\"],[\"\\\"aab\\\"\",\"\\\"c*a*b\\\"\"],[\"\\\"mississippi\\\"\",\"\\\"mis*is*p*.\\\"\"],[\"\\\"mississippi\\\"\",\"\\\"mis*is*ip*.\\\"\"]]";
     vector<vector<string>> arr = parseStringArrArr(str);
     for (int i = 0; i < arr.size(); i++)
     {
